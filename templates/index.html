@@ -1,0 +1,85 @@
+<html>
+<head>
+  <title>Internal Doc Chatbot [EXPLORATORY USE ONLY]</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      color: #333;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    p {
+      margin-bottom: 20px;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+    .chatbot {
+      color: red;
+    }
+    .links {
+      margin-top: 20px;
+    }
+    .links a {
+      display: block;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Internal Doc Chatbot</h1>
+  <p>This is an exploratory use of a Large Language Model (LLM) on our internal Confluence documentation. This process takes your query, performs a similarity search on a local database of our internal Confluence documentation, and passes both to the LLM to generate a human-readable response.</p>
+  <p>The context is that of a Confluence note that appears to be the most similar to the question. Similarity in Natural Language Processing (NLP) is resolved by converting a text into a vector, also called embeddings, and a simple vector similarity metric is used to identify texts that are similar.</p>
+  <p>Once the most similar document is found, its content is added to the prompt. The LLM uses then the context to answer the question.</p>
+  <p>Although not perfect, the tool can provide a more useful choice for the document (or documents) to look at to answer your question with more depth.</p>
+  <p>Try it!</p>
+
+   <form action="/" method="post">
+    <!-- Text input -->
+    <label for="text_input">Type your question:</label><br>
+    <input type="text" id="text_input" name="text_input" size="30"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <!-- Text output -->
+  {% if text_output %}
+  <p><b>User:</b>{{ text_input }}</p>
+  <p class="chatbot"><b>Chatbot:</b>{{ text_output }}</p>
+  {% endif %}
+  
+  
+</body>
+</html>
