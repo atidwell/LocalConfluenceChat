@@ -6,7 +6,6 @@ from transformers import AutoTokenizer
 from sentence_transformers import SentenceTransformer
 import openai
 import numpy as np
-import requests
 from bs4 import BeautifulSoup
 
 #Get working directory
