@@ -75,8 +75,8 @@ for page in pages:
 DOC_title_content_embeddings = pd.DataFrame(collect, columns=['title', 'body', 'num_tokens'])
 # Caculate the embeddings
 ## Create a checkpoint of the embeddings in the event that the embedding functions below fail
-DOC_title_content_embeddings.to_csv('C:/Users/M76415/Downloads/AI/DOC_title_content_embeddings_chkpt.csv', index=False)
+DOC_title_content_embeddings.to_csv(f'{dir}/DOC_title_content_embeddings_chkpt.csv', index=False)
 ## Limit to pages with less than get_max_num_tokens tokens
 DOC_title_content_embeddings = DOC_title_content_embeddings[DOC_title_content_embeddings.num_tokens<=get_max_num_tokens()]
 DOC_title_content_embeddings['embedding'] = DOC_title_content_embeddings.body.apply(lambda x: get_embeddings(x)['data'][0]['embedding'])
-DOC_title_content_embeddings.to_csv('C:/Users/M76415/Downloads/AI/DOC_title_content_embeddings.csv', index=False)
+DOC_title_content_embeddings.to_csv(f'{dir}/DOC_title_content_embeddings.csv', index=False)
